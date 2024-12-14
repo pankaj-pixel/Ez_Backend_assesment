@@ -1,12 +1,13 @@
 from fastapi import FastAPI
-import auth, file
 from database import Base, engine
+import user
+import file
 
-# Create tables
+# Initialize database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# Include routes
-app.include_router(auth.router, prefix="/auth")
-app.include_router(file.router, prefix="/file")
+
+app.include_router(user.router, prefix="/auth", tags=["User Management"])
+app.include_router(file.router, prefix="/file", tags=["File Management"])

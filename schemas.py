@@ -1,18 +1,25 @@
 from pydantic import BaseModel, EmailStr
 
-class UserSignup(BaseModel):
+class UserCreate(BaseModel):
     email: EmailStr
     password: str
-    role:str
+    role: str
 
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
 
-class FileUpload(BaseModel):
-    filename: str
-    encrypted_url: str
+class UserResponse(BaseModel):
+    id: int
+    email: EmailStr
+    role: str
+    is_verified: bool
+
 
 class FileResponse(BaseModel):
-    filename: str
+    id: int
+    name: str
     encrypted_url: str
+
+    class Config:
+        orm_mode = True
