@@ -16,9 +16,11 @@ class UserResponse(BaseModel):
     is_verified: bool
 
 
+
+
 class FileResponse(BaseModel):
     id: int
-    name: str
+    filename: str
     encrypted_url: str
 
     class Config:

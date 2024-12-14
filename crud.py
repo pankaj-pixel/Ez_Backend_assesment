@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from models import User
+from models import User,File
 from schemas import UserCreate
 
 from passlib.hash import bcrypt
@@ -21,14 +21,12 @@ def create_user(db: Session, user: UserCreate):
     return new_user
     
 # crud.py
-from sqlalchemy.orm import Session
-from models import File
 
-def create_file(db: Session, name: str, path: str, uploader_id: int, encrypted_url: str):
+def create_file_record(db: Session, filename: str, file_path: str, uploaded_by: int, encrypted_url: str):
     new_file = File(
-        name=name,
-        path=path,
-        uploader_id=uploader_id,
+        filename=filename,
+        file_path=file_path,
+        uploaded_by=uploaded_by,
         encrypted_url=encrypted_url
     )
     db.add(new_file)
