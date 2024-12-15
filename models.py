@@ -12,7 +12,7 @@ class User(Base):
     role = Column(String(50), nullable=False)  # 'client' or 'operator'
     is_verified = Column(Boolean, default=False)
 
-    # Establish a relationship with the File model
+    
     files = relationship("File", back_populates="uploader", cascade="all, delete-orphan")
 
 
@@ -25,5 +25,5 @@ class File(Base):
     encrypted_url = Column(String(255), nullable=False)
     uploaded_by = Column(Integer, ForeignKey("users.id"), nullable=False)
 
-    # Relationship with User
+   
     uploader = relationship("User", back_populates="files")
