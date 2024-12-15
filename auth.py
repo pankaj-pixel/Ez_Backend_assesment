@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from models import User
 from database import get_db
 
+#These are demo SECRET_KEY for testing only else saved in .env
 SECRET_KEY = "123456"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
