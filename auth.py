@@ -14,7 +14,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 def create_access_token(data: dict):
     to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp": expire, "sub": str(data.get("user_id"))})  # Add user_id to 'sub'
+    to_encode.update({"exp": expire, "sub": str(data.get("user_id"))})  
     token = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     print("token",token)
     return token
@@ -40,13 +40,13 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
 
-    # Convert 'user_id' to integer safely
+   
     try:
         user_id = int(user_id)
     except ValueError:
         raise HTTPException(status_code=401, detail="Invalid user ID in token")
 
-    # Retrieve the user from the database
+
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=401, detail="User not found")
