@@ -27,9 +27,9 @@ def upload_file(
 
     # Validate file type
     allowed_types = [
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation",  # .pptx
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",   # .docx
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",         # .xlsx
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation",  
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",   
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",         
     ]
     if file.content_type not in allowed_types:
         raise HTTPException(status_code=400, detail="Invalid file type.")
@@ -93,7 +93,7 @@ def download_file(file_id: int, db: Session = Depends(get_db), user=Depends(get_
     
     # Return the download link
     return {
-        "download-link": f"/download-fle/{encrypted_url}",  # Provide a secure link
+        "download-link": f"/download-fle/{encrypted_url}", 
         "message": "success"
     }
 
