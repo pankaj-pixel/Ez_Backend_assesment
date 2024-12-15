@@ -3,7 +3,6 @@ from database import Base, engine
 import user
 import file
 
-# Initialize database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
